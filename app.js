@@ -1,5 +1,5 @@
 import express from 'express'
-import { dbConnect } from './database/connectionMongoDB'
+import { dbConnect } from './database/connectionMongoDB.js'
 import dotenv from 'dotenv';
 
 dotenv.config();

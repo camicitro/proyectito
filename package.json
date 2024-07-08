@@ -6,14 +6,24 @@
   "type": "module",
   "scripts": {
     "dev": "",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
   },
   "keywords": [],
   "author": "Cami <citrocamila06@gmail.com>",
   "license": "ISC",
   "dependencies": {
+    "bcrypt-nodejs": "^0.0.3",
+    "connect-flash": "^0.1.1",
     "dotenv": "^16.4.5",
+    "ejs-mate": "^4.0.0",
     "express": "^4.19.2",
-    "mongoose": "^8.4.5"
+    "mongoose": "^8.4.5",
+    "morgan": "^1.10.0",
+    "passport": "^0.7.0",
+    "passport-local": "^1.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
   }
 }
