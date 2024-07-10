@@ -10,8 +10,9 @@ const userController = new UserController(userService);
 
 userRouter.get('/users', userController.getAllUsers);
 
-//userRouter.get('/users/:id', userController.getUser);
+userRouter.get('/users/:id', userController.getUser);
 
+userRouter.post('/users', userController.createUser);
 
 
 export default userRouter

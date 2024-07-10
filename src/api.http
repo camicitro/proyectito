@@ -3,3 +3,20 @@ GET http://localhost:3000/api/users
 
 ### prueba
 GET http://localhost:3000/api/
+
+### Traer un usuario por id
+GET http://localhost:3000/api/users/668da729a9fa3577de3460df
+
+
+### Crear un nuevo usuario
+POST http://localhost:3000/api/users
+Content-Type: application/json
+
+{
+    "username": "probando",
+    "password": "contraseña",
+    "email": "nuevo_usuario@example.com",
+    "firstname": "Nuevo",
+    "lastname": "Usuario",
+    "birthDate": "1990-01-01"
+}
