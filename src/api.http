@@ -1,0 +1,5 @@
+### Traer todos los users
+GET http://localhost:3000/api/users
+
+### prueba
+GET http://localhost:3000/api/

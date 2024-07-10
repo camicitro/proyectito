@@ -1,19 +1,23 @@
 import express from 'express'
-import dbConnect from './database/connectionMongoDB.js'
+import { dbConnect } from './src/config/database/connectionMongoDB.js'
 import dotenv from 'dotenv';
+import userModel from './src/models/UserModel.js'
+import userRouter from './src/routes/UserRoutes.js'
 
 dotenv.config();
 
-const PORT = process.env.PORT || 3000
 const app = express()
+const PORT = process.env.PORT || 3000
 
+//middleware
 app.use(express.json())
 
-dbConnect()
+//rutas
+app.use('/api', userRouter);
 
-
+//inicio del servidor
 app.listen(PORT, () => {
-    console.log('API lista por el puerto', PORT)
+    console.log('API lista por el puerto ', PORT)
 })
-
+dbConnect()
 
