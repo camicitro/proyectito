@@ -9,7 +9,7 @@ const baseOptions = {
 };
 
 const baseSchema = new mongoose.Schema({
-    deletionDate: {type: Date}
+    deletionDate: { type: Date, default: null}
     //falta el id pero eso ya es automatico creo
 }, baseOptions);
 

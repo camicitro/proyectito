@@ -5,7 +5,7 @@ GET http://localhost:3000/api/users
 GET http://localhost:3000/api/
 
 ### Traer un usuario por id
-GET http://localhost:3000/api/users/668da729a9fa3577de3460df
+GET http://localhost:3000/api/users/66917248627f264620d04731
 
 
 ### Crear un nuevo usuario
@@ -13,10 +13,14 @@ POST http://localhost:3000/api/users
 Content-Type: application/json
 
 {
-    "username": "probando",
+    "username": "NUEVO2",
     "password": "contraseña",
-    "email": "nuevo_usuario@example.com",
+    "email": "nuevo_usur2@example.com",
     "firstname": "Nuevo",
     "lastname": "Usuario",
     "birthDate": "1990-01-01"
 }
+
+### Dar de baja un usuario
+DELETE  http://localhost:3000/api/users/6691768e8f5ce1c4703621fc
+

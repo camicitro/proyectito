@@ -5,7 +5,7 @@ export default class UserService {
     //GET TODOS LOS USUARIOS
     async findUsers (){
         try {
-            const users = await userModel.find();
+            const users = await userModel.find({ deletionDate: null }); //aca habria q ver si queermos q traiga todos o solo los q no estan dados de baja
             if(users.length === 0 ) return [];
             return users;
         }catch(error){
@@ -15,9 +15,13 @@ export default class UserService {
 
     async findUserById(userId){
         try{
-            const user = await userModel.findById(userId)
+            const user = await userModel.findOne({
+                _id: userId ,
+                deletionDate: null 
+
+            });
             if(!user){
-                throw new Error('Usuario no encontrado')
+                return null
             }
             return user
         }catch(error){
@@ -32,7 +36,8 @@ export default class UserService {
                 $or: [
                     { username : userData.username},
                     { email: userData.email}
-                ]
+                ],
+                deletionDate: null
             });
             if(existingUser){
                 throw new Error('Ya existe ese usuario ')
@@ -42,6 +47,23 @@ export default class UserService {
             return newUser
         }catch(error){
             throw new Error('Error creando usuario: ' + error.message);
+        }
+    }
+
+    async deleteUser(userId){
+        try{
+            const user = await userModel.findOne({
+            _id: userId,
+            deletionDate: null
+            })
+            if(!user){
+                return false
+            }
+            user.deletionDate = new Date();
+            await user.save();
+            return true
+        }catch(error){
+            throw new Error('Error al dar de baja usuario: ' + error.message);
         }
     }
 }
