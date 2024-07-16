@@ -3,6 +3,7 @@ import { dbConnect } from './src/config/database/connectionMongoDB.js'
 import dotenv from 'dotenv';
 import userModel from './src/models/UserModel.js'
 import userRouter from './src/routes/UserRoutes.js'
+import teamRouter from './src/routes/TeamRoutes.js';
 
 dotenv.config();
 
@@ -14,6 +15,7 @@ app.use(express.json())
 
 //rutas
 app.use('/api', userRouter);
+app.use('/api', teamRouter);
 
 //inicio del servidor
 app.listen(PORT, () => {

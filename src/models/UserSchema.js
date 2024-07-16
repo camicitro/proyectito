@@ -7,9 +7,9 @@ const userSchema = new mongoose.Schema({
     email: {type: String, required: true, unique: true},
     firstname: {type: String},
     lastname: {type: String},
-    birthDate: {type: Date}
+    birthDate: {type: Date},
+    teamId: { type: mongoose.Schema.Types.ObjectId, ref: 'teams'} //ref tiene que coincidir con el nombre del modelo
 
-    //team: { type: String, enum: ['dulce', 'salado'], default: '' }
 }).add(baseSchema);
 
 export default userSchema

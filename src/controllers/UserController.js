@@ -57,4 +57,57 @@ export class UserController {
             return res.status(500).send({message: 'Error en petición'})
         }
     }
+
+    updateUser = async (req, res) => {
+        try{
+            const userId = req.params.id
+            const userData = req.body
+
+            const updatedUser = await this.userService.updateUser(userId, userData)
+            if(!updatedUser){
+                return res.status(404).send({ message: 'Usuario no encontrado'})
+            }
+            return res.status(200).send({message: 'Usuario modificado exitosamente'})
+        }catch(e){
+            return res.status(500).send({message: 'Error en petición'})
+        }
+    }
+
+    getUserWithTeam = async (req, res) => {
+        try{
+            const userId = req.params.id
+            const user = await this.userService.findUserWithTeam(userId)
+            if(!user){
+                return res.status(404).json({ message: 'Usuario no encontrado' })
+            }
+            const {password: _, ...userWithoutPassword} = user.toObject()
+            return res.status(200).json(userWithoutPassword)
+        } catch(e){
+            return res.status(500).send({ message: 'Error en la peticion'})
+        }
+    }
+
+    getUsersByTeamName = async (req, res) => {
+        try{
+            const teamName = req.params.teamName
+            const users = await this.userService.findUsersByTeamName(teamName)
+            if(!users.length){
+                return res.status(404).json({ message: 'No se encontraron usuarios para el equipo ingresado '})
+            }
+            res.status(200).json(users)
+        }catch(e){
+            return res.status(500).send({ message: 'Error en la peticion'})
+        }
+    }
+
+    updateTeamOfUser = async (req, res) => {
+        try{
+            const userId = req.params.teamName
+            const team = req.body
+            const user = await this.userService.assignTeamToUser(team._id, userId) // VER SI LE PASAMOS EL ID O EL NOMBRE!!!!!
+            return user
+        }catch(e){
+            return res.status(500).send({ message: 'Error en la peticion'})
+        }
+    }
 }

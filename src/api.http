@@ -1,8 +1,12 @@
+### prueba
+GET http://localhost:3000/api/
+
+
+#################### USERS ####################
+
 ### Traer todos los users
 GET http://localhost:3000/api/users
 
-### prueba
-GET http://localhost:3000/api/
 
 ### Traer un usuario por id
 GET http://localhost:3000/api/users/66917248627f264620d04731
@@ -13,9 +17,9 @@ POST http://localhost:3000/api/users
 Content-Type: application/json
 
 {
-    "username": "NUEVO2",
+    "username": "Para modificar",
     "password": "contraseña",
-    "email": "nuevo_usur2@example.com",
+    "email": "modificarrrrr@example.com",
     "firstname": "Nuevo",
     "lastname": "Usuario",
     "birthDate": "1990-01-01"
@@ -24,3 +28,51 @@ Content-Type: application/json
 ### Dar de baja un usuario
 DELETE  http://localhost:3000/api/users/6691768e8f5ce1c4703621fc
 
+
+### Mofidicar un usuario
+PUT http://localhost:3000/api/users/modify/6696b70701fa827bf6bf6c7e
+Content-Type: application/json
+
+{
+    "username": "Modificado"
+}
+
+### Traer usuarios por nombre de equipo
+GET http://localhost:3000/api/users/team/Salado
+Content-Type: application/json
+
+#################### TEAMS ####################
+
+### Crear un team
+POST http://localhost:3000/api/teams
+Content-Type: application/json
+
+{
+    "teamname": "Para modificar",
+    "description": "a"
+}
+
+### Traer todos los teams
+GET http://localhost:3000/api/teams
+
+
+### Traer un team por id
+GET http://localhost:3000/api/teams/6696b3905e856b1bd70ab5ff
+
+
+
+### Dar de baja un team
+DELETE  http://localhost:3000/api/teams/6695901b01d57aacc4a0b07a
+
+
+### Modificar un team
+PUT http://localhost:3000/api/teams/6696b3905e856b1bd70ab5ff
+Content-Type: application/json
+
+{
+    "teamname": "Modificado",
+    "description": "a"
+}
+
+### Asignar un team a un usuario
+PUT http://localhost:3000/api/users/6691768e8f5ce1c4703621fc
