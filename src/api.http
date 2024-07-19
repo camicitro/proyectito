@@ -17,9 +17,9 @@ POST http://localhost:3000/api/users
 Content-Type: application/json
 
 {
-    "username": "Para modificar",
+    "username": "Pdnasdasjkdhkicar",
     "password": "contraseña",
-    "email": "modificarrrrr@example.com",
+    "email": "modidsakdhasjkrr@example.com",
     "firstname": "Nuevo",
     "lastname": "Usuario",
     "birthDate": "1990-01-01"
@@ -76,3 +76,73 @@ Content-Type: application/json
 
 ### Asignar un team a un usuario
 PUT http://localhost:3000/api/users/6691768e8f5ce1c4703621fc
+
+
+
+#################### RESEÑAS ####################
+
+### Subir una foto (no a la reseña)
+POST http://localhost:3000/api/imgs
+Content-Type: multipart/form-data; boundary=boundary
+
+--boundary
+Content-Disposition: form-data; name="reviewId"
+
+123
+--boundary
+Content-Disposition: form-data; name="file"; filename="dragon.jpg"
+Content-Type: image/jpeg
+
+< ./C:/Users/cami/Pictures/dragon.jpg
+--boundary--
+
+
+
+### Crear la reseña
+POST http://localhost:3000/api/reviews
+Content-Type: multipart/form-data; boundary=boundary
+
+--boundary
+Content-Disposition: form-data; name="reviewDate"
+
+2024-07-19
+--boundary
+Content-Disposition: form-data; name="reviewExperience"
+
+Great coffee and ambiance!
+--boundary
+Content-Disposition: form-data; name="reviewPrice"
+
+15
+--boundary
+Content-Disposition: form-data; name="amountPeople"
+
+2
+--boundary
+Content-Disposition: form-data; name="consumedFood"
+
+Cappuccino and Croissant
+--boundary
+Content-Disposition: form-data; name="attentionScore"
+
+5
+--boundary
+Content-Disposition: form-data; name="placeScore"
+
+4
+--boundary
+Content-Disposition: form-data; name="userId"
+
+668da729a9fa3577de3460df
+--boundary
+Content-Disposition: form-data; name="photos"; filename="dragon.jpg"
+Content-Type: image/jpeg
+
+< ./C:/Users/cami/Pictures/dragon.jpg
+--boundary
+Content-Disposition: form-data; name="photos"; filename="perros.jpg"
+Content-Type: image/jpeg
+
+< ./C:/Users/cami/Pictures/perros.jpg
+
+--boundary--
