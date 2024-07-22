@@ -3,18 +3,23 @@ import express from 'express'
 import { ReviewController } from "../controllers/ReviewController.js";
 import ReviewService from "../services/ReviewService.js";
 import ReviewPhotoService from "../services/ReviewPhotoService.js";
-import ImageUploadService from "../services/ImageUploadService.js";
+import ImageService from "../services/ImagesService.js";
 
 
 const reviewRouter = express.Router()
 
-const imageUploadService = new ImageUploadService()
-const reviewPhotoService = new ReviewPhotoService(imageUploadService)
+const imageService = new ImageService()
+const reviewPhotoService = new ReviewPhotoService(imageService)
 const reviewService = new ReviewService(reviewPhotoService)
 const reviewController = new ReviewController(reviewService);
 
 const upload = multer({ storage: multer.memoryStorage() })
 
 reviewRouter.post('/reviews', upload.array('photos', 10) , reviewController.createReview);
+
+reviewRouter.get('/reviews/:id', reviewController.getReviewById);
+
+//reviewRouter.get('/reviews', reviewController.getAllReviews);
+
 
 export default reviewRouter

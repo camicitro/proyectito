@@ -1,4 +1,7 @@
 import express from 'express'
+import cors from 'cors'
+import path from 'path';
+import { fileURLToPath } from 'url';
 import { dbConnect } from './src/config/database/connectionMongoDB.js'
 import dotenv from 'dotenv';
 import userRouter from './src/routes/UserRoutes.js'
@@ -15,13 +18,21 @@ const PORT = process.env.PORT || 3000
 //middleware
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
-
+app.use(cors());
 //rutas
 app.use('/api', userRouter);
 app.use('/api', teamRouter);
 app.use('/api', reviewPhotoRouter)
 app.use('/api', reviewRouter)
 app.use(express.static('public'));
+
+// Obtén la ruta del directorio actual
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Configura el directorio para archivos estáticos
+app.use('/images', express.static(path.join(__dirname, 'public/images')));
+
 
 const initApp = async () => {
     try{

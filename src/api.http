@@ -88,7 +88,7 @@ Content-Type: multipart/form-data; boundary=boundary
 --boundary
 Content-Disposition: form-data; name="reviewId"
 
-123
+669aaeaf8e19b59a944c85ba
 --boundary
 Content-Disposition: form-data; name="file"; filename="dragon.jpg"
 Content-Type: image/jpeg
@@ -146,3 +146,8 @@ Content-Type: image/jpeg
 < ./C:/Users/cami/Pictures/perros.jpg
 
 --boundary--
+
+
+
+### Devolver la reseña
+GET http://localhost:3000/api/reviews/669aaeaf8e19b59a944c85ba

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Reseña con Imágenes</title>
+</head>
+<body>
+    <h1>Reseña</h1>
+    <p>Fecha: <span id="reviewDate"></span></p>
+    <p>Experiencia: <span id="reviewExperience"></span></p>
+    <!-- Otros campos de la reseña -->
+
+    <h2>Imágenes</h2>
+    <div id="images"></div>
+
+    <script>
+        async function fetchReview() {
+            const reviewId = '669aaeaf8e19b59a944c85ba'; // Reemplaza con el ID de la reseña que deseas obtener
+            const response = await fetch(`http://localhost:3000/api/reviews/${reviewId}`);
+            
+            if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            const data = await response.json();
+            console.log(data)
+
+            document.getElementById('reviewDate').textContent = new Date(data.review.reviewDate).toLocaleDateString();
+            document.getElementById('reviewExperience').textContent = data.review.reviewExperience;
+
+            const imagesDiv = document.getElementById('images');
+            data.images.forEach(image => {
+                console.log(image.url); 
+
+                const img = document.createElement('img');
+                img.src = `/images/${image.filename}`; 
+                img.alt = image.filename;
+                imagesDiv.appendChild(img);
+    });
+        }
+
+        fetchReview();
+    </script>
+</body>
+</html>

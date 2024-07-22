@@ -22,7 +22,26 @@ export default class ReviewService {
             throw new Error('Error creando reseña: ' + error.message);
         }
     }
+    
+    async findReviewById(reviewId){
+        try{
+            const review = await reviewModel.findById(reviewId).populate('reviewPhotos')
+            //const reviewPhotos = await this.reviewPhotoService.findReviewPhotosByReviewId(reviewId)
+            if(!review){
+                throw new Error('Reseña no encontrada')
+            }
+            
+            const images = []
 
+            for (const photo of review.reviewPhotos){
+                const base64Image = await this.reviewPhotoService.imageService.convertImageToBase64(photo.fileId)
+                images.push({ filename: photo.filename, image: base64Image })
+                return { review, images }
+        }
+        }catch(error){
+            throw new Error('Error al buscar reseña: ' + error.message);
+        }
+    }
 
 }
 

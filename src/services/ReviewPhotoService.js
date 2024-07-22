@@ -1,12 +1,12 @@
 import reviewPhotoModel from '../models/ReviewPhotoModel.js';
 
 export default class ReviewPhotoService {
-    constructor(imageUploadService){
-        this.imageUploadService = imageUploadService
+    constructor(imageService){
+        this.imageService = imageService
     }
 
     async createReviewPhoto(file, reviewId){
-        const fileId = await this.imageUploadService.uploadImage(file)
+        const fileId = await this.imageService.uploadImage(file)
         const reviewPhoto = new reviewPhotoModel({
             filename: file.originalname,
             reviewId: reviewId,
@@ -16,7 +16,16 @@ export default class ReviewPhotoService {
         return reviewPhoto.save()
     }
 
-    async findReviewPhotoById(){
+
+    async findReviewPhotosByReviewId(reviewId){
+        try{
+            const reviewPhotos = reviewPhotoModel.find({ reviewId: reviewId}).populate('fileId')
+            return reviewPhotos
+        }catch(e){
+            throw new Error('Error al buscar fotos: ' + error.message);
+        }
 
     }
+
+
 }
